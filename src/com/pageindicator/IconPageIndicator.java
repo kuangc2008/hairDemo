@@ -28,7 +28,8 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 
-import com.hotspot.loveeat.R;
+import com.qihoo.haierdemo.R;
+
 
 /**
  * This widget implements the dynamic action bar tab behavior that can change

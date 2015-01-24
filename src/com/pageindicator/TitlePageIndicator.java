@@ -38,7 +38,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-import com.hotspot.loveeat.R;
+import com.qihoo.haierdemo.R;
+
 
 /**
  * A TitlePageIndicator is a PageIndicator which displays the title of left view

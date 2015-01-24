@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="dish_item_image_width">200dp</dimen>
+    <dimen name="dish_item_image_height">190dp</dimen>
+    <dimen name="dish_item_price_width">45dp</dimen>
+    <dimen name="dish_bottom_height">45dp</dimen>
+
+    <!-- title bar高度 -->
+    <dimen name="title_bar_height">48dp</dimen>
+
+    <!-- 用户推荐 -->
+    <dimen name="recommend_popup_window_width">350dp</dimen>
+    <dimen name="recommend_dish_image_width">100dp</dimen>
+    <dimen name="recommend_dish_image_height">65dp</dimen>
+
+    <!-- 菜品详情 -->
+    <dimen name="dish_details_width">500dp</dimen>
+    <dimen name="dish_details_title_bar_height">48dp</dimen>
+    <dimen name="dish_details_img_height">300dp</dimen>
+    <dimen name="dish_details_recommend_grid_spacing">5dp</dimen>
+    <dimen name="dish_details_recommend_grid_item_height">40dp</dimen>
+    
+    <!-- 用户评论 -->
+    <dimen name="comment_title_bar_height">48dp</dimen>
+    
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#ff000000</color>
+    <color name="red">#e8373d</color>
+    <color name="darker_gray">#777</color>
+    <color name="green">#0ff0ff</color>
+    <color name="yellow">#FF33ff</color>
+    <color name="blue">#00ffff</color>
+    <color name="ligher_gray">#C999</color>
+    <color name="offwhite">#eaeaea</color> <!-- 灰白色 -->
+    <!-- <color name="offwhite">#C2C2C2</color>灰白色 -->
+    <color name="gold">#e0bf65</color> <!-- vip bg_color -->
+    <drawable name="translucent_background">#5500ff</drawable>
+
+    <color name="init_text">#2c5d85</color> <!-- 初始化字体绿色 -->
+    <color name="init_text1">#1b4a6e</color> <!-- 初始化字体绿色2 -->
+    <color name="init_text2">#562f61</color> <!-- 初始化字体紫色 -->
+    <color name="init_text3">#5d4962</color> <!-- 初始化字体紫色 2 -->
+    <color name="init_text4">#8e8e8e</color> <!-- 初始化字体灰色 -->
+    <color name="init_text5">#8d6099</color> <!-- 初始化字体紫色 -->
+    <color name="init_text6">#1c4884</color> <!-- 初始化字体紫色 -->
+    <color name="init_text7">#216061</color> <!-- 墨绿色 -->
+    <color name="init_text8">#867034</color> <!-- 墨绿色 -->
+
+    <color name="title_bar_bg_color">#e35b5d</color>
+
+    <!-- 客人推荐 -->
+    <color name="recommend_bg_color">#eeeaeaea</color>
+    <color name="recommend_title_bg_color">#d7d7d7</color>
+    <color name="recommend_title_text_color">#616161</color>
+    <color name="recommend_comment_text_color">#4f4f4f</color>
+    <color name="recommend_dish_name_price_color">#727272</color>
+    <color name="order_detail_title">#929292</color>
+    <color name="order_detail_item">#575654</color>
+    <color name="order_detail_item_plus">#949494</color>
+    <color name="order_unit_price">#e8383d</color>
+    <color name="order_dish_total">#737373</color>
+    <color name="order_pay_table">#e35b5d</color>
+	<color name="order_dot">#dbdbdb</color>
+    
+    <!-- 菜品详情 -->
+    <color name="dish_details_bg_color">#00000000</color>
+    <color name="dish_details_title_text_color">#585858</color>
+    <color name="dish_details_vip_text_color">#e0bf65</color>
+    <color name="dish_details_add_order_text_color">#737373</color>
+    <color name="dish_details_recommend_desc_text_color">#737373</color>
+
+    <!-- 搜索边框 -->
+    <color name="search_frame_color">#b34d4e</color>
+</resources>
