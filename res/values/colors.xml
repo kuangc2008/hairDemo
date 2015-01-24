@@ -50,4 +50,11 @@
 
     <!-- 搜索边框 -->
     <color name="search_frame_color">#b34d4e</color>
+
+    <color name="list_item_title">#000</color>
+    <color name="counter_text_color">#000</color>
+    <color name="list_divider">#fff</color>
+    <color name="list_background">#fff</color>
+    <color name="counter_text_bg">#fff</color>
+    <color name="list_background_pressed">#ff8c00</color>
 </resources>
