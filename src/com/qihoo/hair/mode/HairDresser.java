@@ -4,6 +4,8 @@ package com.qihoo.hair.mode;
 import java.util.List;
 
 public class HairDresser {
+    long id;
+
     private int icon;  //默认icon
 
     private String iconPath;  //本地存储的icon
@@ -26,4 +28,113 @@ public class HairDresser {
 
     private List<ShouYi>  mShouYi;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public HairDresser(int icon, String iconPath, String iconUrl, String name, int sex, String zhiwei, String mp3Path, int backGroundMode, String address, String activity, List<ShouYi> mShouYi) {
+        this.icon = icon;
+        this.iconPath = iconPath;
+        this.iconUrl = iconUrl;
+        this.name = name;
+        this.sex = sex;
+        this.zhiwei = zhiwei;
+        this.mp3Path = mp3Path;
+        this.backGroundMode = backGroundMode;
+        this.address = address;
+        this.activity = activity;
+        this.mShouYi = mShouYi;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
+
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = iconPath;
+    }
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public String getZhiwei() {
+        return zhiwei;
+    }
+
+    public void setZhiwei(String zhiwei) {
+        this.zhiwei = zhiwei;
+    }
+
+    public String getMp3Path() {
+        return mp3Path;
+    }
+
+    public void setMp3Path(String mp3Path) {
+        this.mp3Path = mp3Path;
+    }
+
+    public int getBackGroundMode() {
+        return backGroundMode;
+    }
+
+    public void setBackGroundMode(int backGroundMode) {
+        this.backGroundMode = backGroundMode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+    public List<ShouYi> getmShouYi() {
+        return mShouYi;
+    }
+
+    public void setmShouYi(List<ShouYi> mShouYi) {
+        this.mShouYi = mShouYi;
+    }
 }
