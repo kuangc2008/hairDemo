@@ -14,15 +14,19 @@
      >
 
         <activity
-            android:name="com.qihoo.hair.MainActivity"
+            android:name="com.qihoo.hair.activity.MainActivity"
+            >
+        </activity>
 
+        <activity
+            android:name="com.qihoo.hair.activity.DetailActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
                 <category android:name="android.intent.category.LAUNCHER"></category>
             </intent-filter>
-
-            </activity>
+        </activity>
     </application>
 
 </manifest>
