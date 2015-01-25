@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 菜品评论adapter的item -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip" >
+
+    <ImageView
+        android:id="@+id/user_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/default_user_photo_male" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/user_photo"
+        android:id="@+id/user_name"
+        android:layout_alignTop="@id/user_name"
+        android:text="王二狗"
+        />
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="100dp"
+        android:maxHeight="30dp"
+        android:numStars="5"
+        android:max="5"
+        android:isIndicator="true"
+        style="@android:style/Widget.Holo.Light.RatingBar.Small"
+        android:layout_toRightOf="@id/user_photo"
+        android:layout_alignBottom="@id/user_photo"
+        android:id="@+id/user_rate"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/user_rate"
+        android:text="4星"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_alignBottom="@id/user_photo"
+        android:id="@+id/user_rate_tv"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/comment_parent"
+        android:layout_below="@id/user_photo">
+        <!--
+        android:background="@drawable/comment_bg" -->
+
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="评论内容"
+            android:textColor="#747474"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/comment_parent"
+        android:layout_alignParentRight="true"
+        android:id="@+id/comment_time"
+        />
+
+</RelativeLayout>

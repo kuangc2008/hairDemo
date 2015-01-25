@@ -1,6 +1,8 @@
 package com.qihoo.hair.mode;
 
 
+import org.w3c.dom.Comment;
+
 import java.util.List;
 
 public class HairDresser {
@@ -27,6 +29,27 @@ public class HairDresser {
     private String activity; //活动
 
     private List<ShouYi>  mShouYi;
+
+    private List<com.qihoo.hair.mode.Comment> mComments;
+
+
+    private List<Works> mWorks;
+
+    public List<Works> getmWorks() {
+        return mWorks;
+    }
+
+    public void setmWorks(List<Works> mWorks) {
+        this.mWorks = mWorks;
+    }
+
+    public List<com.qihoo.hair.mode.Comment> getmComments() {
+        return mComments;
+    }
+
+    public void setmComments(List<com.qihoo.hair.mode.Comment> mComments) {
+        this.mComments = mComments;
+    }
 
     public long getId() {
         return id;

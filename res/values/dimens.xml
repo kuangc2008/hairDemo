@@ -25,5 +25,6 @@
     
     <!-- 用户评论 -->
     <dimen name="comment_title_bar_height">48dp</dimen>
+    <dimen name="title_bar_min_height">48dp</dimen>
 
 </resources>
