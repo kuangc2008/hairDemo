@@ -21,6 +21,26 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <!--<style name="customDialog" parent="@android:Theme.Dialog">-->
+        <!--<item name="android:windowFrame">@null</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <!--<item name=""-->
+    <!--</style>-->
+
+    <style name="customDialog" parent="@android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--<item name="android:background">#fff</item>-->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <!-- 父类为Theme.Sherlock.Light，即白底黑字（如果是Theme.Sherlock，则为黑底白字）, 为了兼容考虑，所有样式的相关item需要写2遍-->
     <style name="Theme.DEMO" parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/Widget.DEMO.ActionBar</item>

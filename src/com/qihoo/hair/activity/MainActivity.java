@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -337,7 +338,14 @@ public class MainActivity extends Activity {
         searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position) {
+                        case 0:
+                            startActivity(new Intent(MainActivity.this,SearchResultActivity.class));
+                            break;
 
+                        default:
+                            break;
+                    }
             }
         });
         searchListView.setVisibility(View.GONE);

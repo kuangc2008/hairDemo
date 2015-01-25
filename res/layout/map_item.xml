@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:padding="8dp"
+    android:gravity="center_vertical"
+    android:background="@color/offwhite">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:text="理发师"/>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="5dip"
+        android:layout_below="@id/name"
+        android:layout_alignLeft="@id/name"
+        android:text="朝阳区酒仙桥路1号"/>
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="5dip"
+        android:layout_below="@id/address"
+        android:drawableLeft="@drawable/location_arrow"
+        android:layout_alignLeft="@id/address"
+        android:text="15km"/>
+
+
+    <TextView
+        android:id="@+id/detail_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/information_text"
+        android:textSize="16sp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dip"
+        android:layout_alignParentRight="true"
+        android:drawableTop="@drawable/information"
+        android:text="详情"/>
+</RelativeLayout>

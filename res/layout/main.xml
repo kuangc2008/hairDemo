@@ -3,14 +3,14 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/offwhite"
+    android:background="@drawable/map1"
     >
 
     <!-- Framelayout to display Fragments -->
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
         <ListView
             android:id="@+id/search_list"
             android:layout_width="fill_parent"
