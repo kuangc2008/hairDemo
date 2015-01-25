@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:background="#FFF"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_bar_min_height" >
+
+        <ImageView
+            android:id="@+id/actionbar_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:padding="10dp"
+            android:scaleType="center" />
+
+        <TextView
+            android:id="@+id/actionbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dip"
+            android:layout_marginRight="130dip"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:text=""
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/actionbar_item1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:scaleType="center" />
+
+        <ImageView
+            android:id="@+id/actionbar_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/actionbar_item1"
+            android:padding="14dip"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/line_title"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+</LinearLayout>
