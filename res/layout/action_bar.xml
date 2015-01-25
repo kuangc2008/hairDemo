@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/top_layout"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/title_bar_min_height" >
+        android:layout_height="30dp" >
 
         <ImageView
             android:id="@+id/actionbar_back"
