@@ -29,6 +29,8 @@ public class HairDresserManager {
         return mHairDresser;
     }
 
+    
+    
     public HairDresser getHDById(long id) {
         return mHairDresser.get(id);
     }
