@@ -1,47 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/map1">
+
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/marker11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dip"
+            android:layout_marginTop="130dip"
+            android:background="@drawable/map_marker"/>
+
+        <ImageView
+            android:id="@+id/marker12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dip"
+            android:layout_marginTop="140dip"
+            android:background="@drawable/map_marker"/>
+
+        <ImageView
+            android:id="@+id/marker13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="180dip"
+            android:layout_marginTop="200dip"
+            android:background="@drawable/map_marker"/>
+
+        <ImageView
+            android:id="@+id/marker14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/map_marker"/>
+
+        <ImageView
+            android:id="@+id/marker15"
+            android:layout_below="@id/marker14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="20dip"
+            android:layout_marginTop="80dip"
+            android:background="@drawable/map_marker"/>
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/marker21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="230dip"
+            android:layout_marginTop="230dip"
+            android:background="@drawable/map_marker"/>
+
+        <ImageView
+            android:id="@+id/marker22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="190dip"
+            android:layout_marginTop="80dip"
+            android:background="@drawable/map_marker"/>
+
+        <ImageView
+            android:id="@+id/marker23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="280dip"
+            android:layout_marginTop="300dip"
+            android:background="@drawable/map_marker"/>
+
+        <ImageView
+            android:id="@+id/marker24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/map_marker"/>
+
+        <ImageView
+            android:id="@+id/marker25"
+            android:layout_below="@id/marker24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="80dip"
+            android:layout_marginTop="100dip"
+            android:background="@drawable/map_marker"/>
+    </RelativeLayout>
 
 
-    <ImageView
-        android:id="@+id/marker1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="130dip"
-        android:layout_marginTop="130dip"
-        android:background="@drawable/map_marker"/>
-
-    <ImageView
-        android:id="@+id/marker2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dip"
-        android:layout_marginTop="140dip"
-        android:background="@drawable/map_marker"/>
-
-    <ImageView
-        android:id="@+id/marker3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="180dip"
-        android:layout_marginTop="200dip"
-        android:background="@drawable/map_marker"/>
-
-    <ImageView
-        android:id="@+id/marker4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/map_marker"/>
-
-    <ImageView
-        android:id="@+id/marker5"
-        android:layout_below="@id/marker4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginRight="20dip"
-        android:layout_marginTop="80dip"
-        android:background="@drawable/map_marker"/>
-</RelativeLayout>
+</FrameLayout>

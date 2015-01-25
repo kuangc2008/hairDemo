@@ -8,23 +8,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qihoo.haierdemo.R;
 
+import java.security.PrivateKey;
 import java.util.ArrayList;
 
 
@@ -47,8 +56,8 @@ public class MainActivity extends Activity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
     private int prePosition;
-    //搜索条件列表
-    private ListView searchListView;
+    private PopupWindow popupWindow;
+    private SearchView searchview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +100,7 @@ public class MainActivity extends Activity {
         // enabling action bar app icon and behaving it as toggle button
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-        initQueryListView();
+        initPopupWindow();
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
@@ -106,6 +115,15 @@ public class MainActivity extends Activity {
                 hideSoftKeyBorad();
                 getActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
+                popupWindow.dismiss();
+                if (searchview!=null) {
+                    searchview.onActionViewCollapsed();
+                }
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -154,7 +172,7 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.my, menu);
-        searchListView.setVisibility(View.GONE);
+        popupWindow.dismiss();
         if (mTitle.equals(navMenuTitles[2])) {
             MenuItem searchMenu = menu.findItem(R.id.action_search);
             if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
@@ -164,7 +182,10 @@ public class MainActivity extends Activity {
 
             searchMenu.setVisible(true);
 
-            final SearchView searchview=(SearchView) searchMenu.getActionView();
+            searchview = (SearchView) searchMenu.getActionView();
+            int id = searchview.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+            TextView textView = (TextView) searchview.findViewById(id);
+            textView.setTextColor(Color.WHITE);
 
             searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
@@ -175,10 +196,18 @@ public class MainActivity extends Activity {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     if (!TextUtils.isEmpty(newText)) {
-                        searchListView.setVisibility(View.GONE);
+                        popupWindow.dismiss();
                     }else {
                         if (!searchview.isIconified()&&TextUtils.isEmpty(searchview.getQuery())) {
-                            searchListView.setVisibility(View.VISIBLE);
+//                            searchListView.setVisibility(View.VISIBLE);
+                            if (!popupWindow.isShowing()) {
+                                popupWindow.showAsDropDown(searchview);
+                                searchview.setFocusableInTouchMode(true);
+                                searchview.setFocusable(true);
+                                searchview.requestFocus();
+//                                popupWindow.setFocusable(true);
+                            }
+
                         }
                     }
                     return false;
@@ -188,20 +217,24 @@ public class MainActivity extends Activity {
             searchview.setOnCloseListener(new SearchView.OnCloseListener() {
                 @Override
                 public boolean onClose() {
-                    searchListView.setVisibility(View.GONE);
+//                    searchListView.setVisibility(View.GONE);
+                    popupWindow.dismiss();
                     return false;
                 }
             });
             searchview.setOnSearchClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    searchview.setQuery("",false);
-                    searchListView.setVisibility(View.VISIBLE);
+                    searchview.setQuery("", false);
+                    popupWindow.showAsDropDown(searchview);
+                    searchview.setFocusableInTouchMode(true);
+                    searchview.setFocusable(true);
+                    searchview.requestFocus();
                 }
             });
-            searchview.setQueryHint("请输入搜索关键词");
-
-//            searchview.setIconifiedByDefault(false);
+            searchview.setQueryHint(Html.fromHtml("<font color = #ffffff>" + "请输入搜索关键词" + "</font>"));
+            searchview.setFocusableInTouchMode(true);
+//            searchview.setIconifiedByDefault(true);
 //            SearchManager mSearchManager=(SearchManager)getSystemService(Context.SEARCH_SERVICE);
 //            SearchableInfo info=mSearchManager.getSearchableInfo(getComponentName());
 //            searchview.setSearchableInfo(info);
@@ -322,11 +355,8 @@ public class MainActivity extends Activity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    /**
-     * 初始化搜索框.
-     */
-    private void initQueryListView() {
-        searchListView = (ListView)findViewById(R.id.search_list);
+    private void initPopupWindow() {
+        final ListView searchListView = (ListView)LayoutInflater.from(this).inflate(R.layout.search_suggest_list_view,null);
         ArrayList<String> list = new ArrayList<String>();
         list.add("按距离搜索（从近到远）");
         list.add("按人气搜索（从高到低）");
@@ -338,16 +368,44 @@ public class MainActivity extends Activity {
         searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    switch (position) {
-                        case 0:
-                            startActivity(new Intent(MainActivity.this,SearchResultActivity.class));
-                            break;
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
+                        break;
 
-                        default:
-                            break;
-                    }
+                    default:
+                        break;
+                }
             }
         });
-        searchListView.setVisibility(View.GONE);
+
+        popupWindow = new PopupWindow(searchListView, ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+        popupWindow.update();
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+//        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+//
+//                    return false;
+//                } else {
+////
+//                    return true;
+//                }
+////                return true;
+//            }
+//        });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+//        if (popupWindow.isShowing()) {
+//            popupWindow.setFocusable(false);
+//        }
+        return super.onTouchEvent(event);
     }
 }
