@@ -16,6 +16,7 @@
         <activity
             android:name="com.qihoo.hair.activity.DetailActivity"
             >
+
         </activity>
 
         <activity
@@ -29,6 +30,8 @@
         </activity>
 
         <activity android:name="com.qihoo.hair.activity.SearchResultActivity"/>
+
+        <activity android:name="com.qihoo.hair.activity.ScaleImageViewAcitivyt"></activity>
     </application>
 
 </manifest>

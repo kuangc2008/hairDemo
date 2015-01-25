@@ -3,6 +3,7 @@ package com.qihoo.hair.manager;
 
 import com.qihoo.hair.mode.HairDresseFactory;
 import com.qihoo.hair.mode.HairDresser;
+import com.qihoo.hair.mode.Works;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +34,11 @@ public class HairDresserManager {
     
     public HairDresser getHDById(long id) {
         return mHairDresser.get(id);
+    }
+
+
+    public Works getWorksResID(long id, int pos) {
+        return mHairDresser.get(id).getmWorks().get(pos);
     }
 
 }

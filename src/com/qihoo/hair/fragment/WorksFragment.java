@@ -1,5 +1,6 @@
 package com.qihoo.hair.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.qihoo.haierdemo.R;
+import com.qihoo.hair.activity.ScaleImageViewAcitivyt;
 import com.qihoo.hair.manager.HairDresserManager;
 import com.qihoo.hair.mode.ShouYi;
 import com.qihoo.hair.mode.Works;
@@ -99,6 +101,11 @@ public class WorksFragment extends Fragment{
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.dish_icon:
+                    Works work = mWorks.get(pos);
+                    Intent i = new Intent(getActivity(), ScaleImageViewAcitivyt.class);
+                    i.putExtra("aa", work.icon);
+                    i.putExtra("pos", pos);
+                    getActivity().startActivity(i);
                     break;
                 case R.id.dish_fav_num:
                     break;
