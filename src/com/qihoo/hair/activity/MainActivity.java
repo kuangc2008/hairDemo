@@ -2,16 +2,24 @@ package com.qihoo.hair.activity;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.qihoo.haierdemo.R;
@@ -38,6 +46,8 @@ public class MainActivity extends Activity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
     private int prePosition;
+    //搜索条件列表
+    private ListView searchListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +90,7 @@ public class MainActivity extends Activity {
         // enabling action bar app icon and behaving it as toggle button
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-
+        initQueryListView();
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
@@ -88,13 +98,12 @@ public class MainActivity extends Activity {
         ) {
             public void onDrawerClosed(View view) {
                 getActionBar().setTitle(mTitle);
-                // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
+                hideSoftKeyBorad();
                 getActionBar().setTitle(mDrawerTitle);
-                // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
             }
         };
@@ -133,10 +142,82 @@ public class MainActivity extends Activity {
         }
         // Handle action bar actions click
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.action_search:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.my, menu);
+        searchListView.setVisibility(View.GONE);
+        if (mTitle.equals(navMenuTitles[2])) {
+            MenuItem searchMenu = menu.findItem(R.id.action_search);
+            if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
+                searchMenu.setVisible(false);
+                return true;
+            }
+
+            searchMenu.setVisible(true);
+
+            final SearchView searchview=(SearchView) searchMenu.getActionView();
+
+            searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    if (!TextUtils.isEmpty(newText)) {
+                        searchListView.setVisibility(View.GONE);
+                    }else {
+                        if (!searchview.isIconified()&&TextUtils.isEmpty(searchview.getQuery())) {
+                            searchListView.setVisibility(View.VISIBLE);
+                        }
+                    }
+                    return false;
+                }
+            });
+
+            searchview.setOnCloseListener(new SearchView.OnCloseListener() {
+                @Override
+                public boolean onClose() {
+                    searchListView.setVisibility(View.GONE);
+                    return false;
+                }
+            });
+            searchview.setOnSearchClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    searchview.setQuery("",false);
+                    searchListView.setVisibility(View.VISIBLE);
+                }
+            });
+            searchview.setQueryHint("请输入搜索关键词");
+
+//            searchview.setIconifiedByDefault(false);
+//            SearchManager mSearchManager=(SearchManager)getSystemService(Context.SEARCH_SERVICE);
+//            SearchableInfo info=mSearchManager.getSearchableInfo(getComponentName());
+//            searchview.setSearchableInfo(info);
+        }else {
+            menu.findItem(R.id.action_search).setVisible(false);
+        }
+        return true;
+    }
+
+    /**
+     * 隐藏软键盘.
+     */
+    private void hideSoftKeyBorad() {
+        View view = getWindow().peekDecorView();
+        if (view != null) {
+            InputMethodManager inputmanger = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 
@@ -146,9 +227,9 @@ public class MainActivity extends Activity {
     private void displayView(int position) {
         // update the main content by replacing fragments
         if (position == 0) {
-            Toast.makeText(MainActivity.this, "position=" + position + "  pre=" + prePosition, Toast.LENGTH_SHORT).show();
             mDrawerList.setItemChecked(prePosition, true);
             mDrawerList.setSelection(prePosition);
+            initSearchFragment();
             return;
         }
         prePosition = position;
@@ -157,21 +238,27 @@ public class MainActivity extends Activity {
             case 1:
                 fragment = new HairSpaceFragment();
                 break;
+
             case 2:
                 fragment = new OrderAndConsultFragment();
                 break;
+
             case 3:
-                fragment = new DiscountFragment();
-                break;
-            case 4:
-                fragment = new ShowFragment();
-                break;
-            case 5:
-                fragment = new InfosFragment();
-                break;
-            case 6:
                 fragment = new SearchAndExploreFragment();
                 break;
+
+            case 4:
+                fragment = new DiscountFragment();
+                break;
+
+            case 5:
+                fragment = new ShowFragment();
+                break;
+
+            case 6:
+                fragment = new InfosFragment();
+                break;
+
             case 7:
                 fragment = new SettingsFragment();
                 break;
@@ -195,6 +282,21 @@ public class MainActivity extends Activity {
         }
     }
 
+    /**
+     * 第一个页面为搜索页面.
+     */
+    private void initSearchFragment() {
+        Fragment fragment = new SearchAndExploreFragment();
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+
+        // update selected item and title, then close the drawer
+        mDrawerList.setItemChecked(3, true);
+        mDrawerList.setSelection(3);
+        setTitle(navMenuTitles[3-1]);
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
@@ -205,7 +307,6 @@ public class MainActivity extends Activity {
      * When using the ActionBarDrawerToggle, you must call it during
      * onPostCreate() and onConfigurationChanged()...
      */
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -218,5 +319,27 @@ public class MainActivity extends Activity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    /**
+     * 初始化搜索框.
+     */
+    private void initQueryListView() {
+        searchListView = (ListView)findViewById(R.id.search_list);
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("按距离搜索（从近到远）");
+        list.add("按人气搜索（从高到低）");
+        list.add("按作品数搜索（从高到低）");
+        list.add("按评价搜索（从高到低）");
+        list.add("按优惠活动搜索（从近到远）");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,R.layout.search_list_item,R.id.search_text,list);
+        searchListView.setAdapter(arrayAdapter);
+        searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+        searchListView.setVisibility(View.GONE);
     }
 }

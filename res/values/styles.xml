@@ -21,6 +21,24 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <!-- 父类为Theme.Sherlock.Light，即白底黑字（如果是Theme.Sherlock，则为黑底白字）, 为了兼容考虑，所有样式的相关item需要写2遍-->
+    <style name="Theme.DEMO" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/Widget.DEMO.ActionBar</item>
+    </style>
+
+    <!-- 标题栏的样式 -->
+    <style name="Widget.DEMO.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">#ff8c00</item>
+        <item name="android:backgroundStacked">#ff8c00</item>
+        <item name="android:backgroundSplit">#ff8c00</item>
+        <item name="android:titleTextStyle">@style/Widget.DEMO.ActionBar.Title</item>
+    </style>
+
+    <!-- 标题栏的标题样式 -->
+    <style name="Widget.DEMO.ActionBar.Title" parent="@android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#fff</item>
+    </style>
+
     <!-- Activity弹出窗样式 -->
     <style name="Activity_Dialog" parent="@android:style/Theme.Dialog">
 
