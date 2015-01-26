@@ -1,7 +1,7 @@
 package com.qihoo.hair.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
@@ -12,6 +12,9 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
 import android.text.TextUtils;
@@ -30,14 +33,12 @@ import android.widget.PopupWindow;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.qihoo.haierdemo.R;
-
 import java.security.PrivateKey;
 import java.util.ArrayList;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -302,7 +303,7 @@ public class MainActivity extends Activity {
         }
 
         if (fragment != null) {
-            android.app.FragmentManager fragmentManager = getFragmentManager();
+            FragmentManager fragmentManager =this.getSupportFragmentManager() ;
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
             // update selected item and title, then close the drawer
@@ -321,7 +322,7 @@ public class MainActivity extends Activity {
      */
     private void initSearchFragment() {
         Fragment fragment = new SearchAndExploreFragment();
-        android.app.FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
         // update selected item and title, then close the drawer
@@ -331,7 +332,7 @@ public class MainActivity extends Activity {
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
-    @Override
+    @SuppressLint("NewApi") @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
         getActionBar().setTitle(mTitle);
