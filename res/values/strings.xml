@@ -32,5 +32,16 @@
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
-
+     <string name="setting_opinion">反馈意见</string>
+    <string name="setting_agreement">用户服务协议</string>
+    <string name="setting_help">帮助</string>
+    <string name="setting_introduction">功能介绍</string>
+     <string name="setting_official_weibo">官方微博</string>
+    <string name="setting_about">关于艺往</string>
+    <string name="ptr_pull_to_refresh"></string>
+    <string name="ptr_release_to_refresh">松手刷新...</string>
+    <string name="ptr_loading">努力加载中</string>
+    <string name="ptr_last_updated">更新: %1$s</string>
+    <!-- Content Description -->
+    
 </resources>
