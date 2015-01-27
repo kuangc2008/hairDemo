@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/action_bar"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/jiamubiao"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:minHeight="30dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="我收藏的照片"
+            android:textColor="#FFF"
+            android:background="@drawable/button_selection_left" />
+        <Button
+            android:id="@+id/zuopinji"
+            android:layout_weight="1"
+            android:minHeight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="我的照片"
+            android:textColor="#FFF"
+            android:background="@drawable/button_selection_middle" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/view_pager"
+        android:layout_weight="1"
+        ></android.support.v4.view.ViewPager>
+
+
+</LinearLayout>

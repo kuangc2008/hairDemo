@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:id="@+id/item_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp">
+
+        <!-- 菜品图片 -->
+
+        <ImageView
+            android:id="@+id/dish_icon"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="2dip"
+            android:layout_marginRight="2dip"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/dish_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_alignBottom="@id/dish_icon"
+            android:layout_marginTop="5dp"
+            android:text="呵呵"
+            android:textColor="@color/ligher_gray"
+            android:textSize="15sp" />
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dish_icon"
+            android:background="#FFFF">
+
+            <!-- 赞数目 -->
+            <ImageView
+                android:id="@+id/love_it"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/dish_fav_num"
+                android:layout_below="@id/dish_name"
+                android:background="@android:color/transparent"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:src="@drawable/default_user_photo_male"
+                android:textColor="#E8383D"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/dish_fav_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/love_it"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/dish_name"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:text="3"
+                android:textSize="16sp" />
+
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
