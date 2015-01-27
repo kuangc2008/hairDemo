@@ -27,4 +27,10 @@
     <dimen name="comment_title_bar_height">48dp</dimen>
     <dimen name="title_bar_min_height">48dp</dimen>
 
+          <!-- slidemenu -->
+    <dimen name="ap_base_menu_shadow_offset">80dp</dimen>
+    <dimen name="ap_base_menu_shadow_width">16dp</dimen>
+    <dimen name="tab_top_fontsize">15sp</dimen>
+    
+    
 </resources>

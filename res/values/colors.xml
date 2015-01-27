@@ -61,4 +61,21 @@
     <color name="search_result_list_item_color">#FFEBC2</color>
     <color name="title_layout_color">#ff8c00</color>
     <color name="information_text">#236B83</color>
+    
+    
+    
+    <color name="gray">#ff939393</color>
+    <color name="pink_list_item_bkg">#ff5983</color>
+    <!-- <color name="offwhite">#C2C2C2</color>灰白色 -->
+
+
+
+    
+
+    <!-- 公共的 -->
+    <color name="tab_main_text_1">#aaa</color>
+    <color name="tab_main_text_2">#74b5f7</color>
+    <color name="tab_top_text_1">#aaa</color>
+    <color name="tab_top_text_2">#000</color>
+    
 </resources>

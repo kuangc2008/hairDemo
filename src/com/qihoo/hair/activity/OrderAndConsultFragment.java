@@ -1,24 +1,29 @@
 package com.qihoo.hair.activity;
 
-import android.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import com.qihoo.haierdemo.R;
+import com.qihoo.hair.adapter.AppointmentAdapter;
+
+import android.os.Bundle;
+import android.widget.ListView;
+
 /**
  * 预约和咨询服务.
  */
-public class OrderAndConsultFragment extends Fragment {
+public class OrderAndConsultFragment extends BaseFragment {
 
     public OrderAndConsultFragment(){}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
-        return rootView;
+    protected void onCreateView(Bundle savedInstanceState) {
+        super.onCreateView(savedInstanceState);
+        setContentView(R.layout.fragment_appointment);
+        ListView mlistview = (ListView) findViewById(R.id.orderlist);
+        AppointmentAdapter mAdapter = getAdapter();
+        mlistview.setAdapter(mAdapter);
+        }
+    //准备数据
+    public AppointmentAdapter getAdapter(){
+        AppointmentAdapter mAdapter = new AppointmentAdapter(getActivity(),1);
+        return mAdapter;
     }
 }
