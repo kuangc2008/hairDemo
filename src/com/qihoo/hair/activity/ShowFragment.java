@@ -109,7 +109,7 @@ public class ShowFragment extends BaseFragment {
                     ViewPager viewPager1 = (ViewPager)convertView.findViewById(R.id.guide_viewPager);
                     Indicator indicator1 = (Indicator) convertView.findViewById(R.id.guide_indicator);
                     IndicatorViewPager  indicatorViewPager1 = new IndicatorViewPager(indicator1, viewPager1);
-                    indicatorViewPager1.setAdapter(Banneradapter);
+                    indicatorViewPager1.setAdapter(Banneradapter0);
                     PLA_AdapterView  mplaAdapterView1 = (PLA_AdapterView<ListAdapter>) convertView.findViewById(R.id.list);
                     StaggeredAdapter mAdapter1 =  initShowAdapter(2);
                     mplaAdapterView1.setAdapter(mAdapter1);
@@ -121,7 +121,7 @@ public class ShowFragment extends BaseFragment {
                     ViewPager viewPager2 = (ViewPager)convertView.findViewById(R.id.guide_viewPager);
                     Indicator indicator2 = (Indicator) convertView.findViewById(R.id.guide_indicator);
                     IndicatorViewPager  indicatorViewPager2 = new IndicatorViewPager(indicator2, viewPager2);
-                    indicatorViewPager2.setAdapter(Banneradapter);
+                    indicatorViewPager2.setAdapter(Banneradapter1);
                     PLA_AdapterView  mplaAdapterView2 = (PLA_AdapterView<ListAdapter>) convertView.findViewById(R.id.list);
                     StaggeredAdapter mAdapter2 =  initShowAdapter(3);
                     mplaAdapterView2.setAdapter(mAdapter2);
@@ -174,7 +174,62 @@ public class ShowFragment extends BaseFragment {
     }
     
     private IndicatorPagerAdapter Banneradapter = new IndicatorViewPagerAdapter() {
+        private int[] images = { R.drawable.lottery_head_1, R.drawable.lottery_head_1, R.drawable.p3};
+
+        @Override
+        public View getViewForTab(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = inflate.inflate(R.layout.tab_guide, container, false);
+            }
+            return convertView;
+        }
+
+        @Override
+        public View getViewForPage(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = new View(getApplicationContext());
+                convertView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            }
+            convertView.setBackgroundResource(images[position]);
+            return convertView;
+        }
+
+        @Override
+        public int getCount() {
+            return images.length;
+        }
+    };
+    
+    
+    private IndicatorPagerAdapter Banneradapter0 = new IndicatorViewPagerAdapter() {
         private int[] images = { R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4 };
+
+        @Override
+        public View getViewForTab(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = inflate.inflate(R.layout.tab_guide, container, false);
+            }
+            return convertView;
+        }
+
+        @Override
+        public View getViewForPage(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = new View(getApplicationContext());
+                convertView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            }
+            convertView.setBackgroundResource(images[position]);
+            return convertView;
+        }
+
+        @Override
+        public int getCount() {
+            return images.length;
+        }
+    };
+    
+    private IndicatorPagerAdapter Banneradapter1 = new IndicatorViewPagerAdapter() {
+        private int[] images = { R.drawable.p3, R.drawable.p4 , R.drawable.p2};
 
         @Override
         public View getViewForTab(int position, View convertView, ViewGroup container) {
