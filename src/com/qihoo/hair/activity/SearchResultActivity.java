@@ -94,6 +94,36 @@ public class SearchResultActivity extends Activity {
         map.put(PHOTOS_NUMBER,"120");
         data.add(map);
 
+        map = new HashMap<String, String>();
+        map.put(DISTANCE,"0.5km");
+        map.put(GRADE,"4.0/5.0(110条评论)");
+        map.put(NAME,"理发师A");
+        map.put(HAS_DOLLAR,"true");
+        map.put(HEARTS_NUMBER,"12");
+        map.put(ADDRESS,"朝阳区酒仙桥1号");
+        map.put(PHOTOS_NUMBER,"120");
+        data.add(map);
+
+        map = new HashMap<String, String>();
+        map.put(DISTANCE,"0.5km");
+        map.put(GRADE,"4.0/5.0(110条评论)");
+        map.put(NAME,"理发师A");
+        map.put(HAS_DOLLAR,"true");
+        map.put(HEARTS_NUMBER,"12");
+        map.put(ADDRESS,"朝阳区酒仙桥1号");
+        map.put(PHOTOS_NUMBER,"120");
+        data.add(map);
+
+        map = new HashMap<String, String>();
+        map.put(DISTANCE,"0.5km");
+        map.put(GRADE,"4.0/5.0(110条评论)");
+        map.put(NAME,"理发师A");
+        map.put(HAS_DOLLAR,"true");
+        map.put(HEARTS_NUMBER,"12");
+        map.put(ADDRESS,"朝阳区酒仙桥1号");
+        map.put(PHOTOS_NUMBER,"120");
+        data.add(map);
+
         return data;
     }
 

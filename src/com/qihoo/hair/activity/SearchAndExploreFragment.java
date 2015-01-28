@@ -127,14 +127,7 @@ public class SearchAndExploreFragment extends Fragment implements View.OnTouchLi
         searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        startActivity(new Intent(getActivity(), SearchResultActivity.class));
-                        break;
-
-                    default:
-                        break;
-                }
+                startActivity(new Intent(getActivity(), SearchResultActivity.class));
             }
         });
 
