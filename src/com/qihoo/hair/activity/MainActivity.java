@@ -57,7 +57,6 @@ public class MainActivity extends FragmentActivity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
     private int prePosition;
-    private PopupWindow popupWindow;
     private SearchView searchview;
 
     @Override
@@ -101,7 +100,6 @@ public class MainActivity extends FragmentActivity {
         // enabling action bar app icon and behaving it as toggle button
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-        initPopupWindow();
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
@@ -121,7 +119,7 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onDrawerStateChanged(int newState) {
                 super.onDrawerStateChanged(newState);
-                popupWindow.dismiss();
+                SearchAndExploreFragment.hideSearchListView();
                 if (searchview!=null) {
                     searchview.onActionViewCollapsed();
                 }
@@ -173,7 +171,8 @@ public class MainActivity extends FragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.my, menu);
-        popupWindow.dismiss();
+        SearchAndExploreFragment.hideSearchListView();
+
         if (mTitle.equals(navMenuTitles[2])) {
             MenuItem searchMenu = menu.findItem(R.id.action_search);
             if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
@@ -197,17 +196,10 @@ public class MainActivity extends FragmentActivity {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     if (!TextUtils.isEmpty(newText)) {
-                        popupWindow.dismiss();
+                        SearchAndExploreFragment.hideSearchListView();
                     }else {
                         if (!searchview.isIconified()&&TextUtils.isEmpty(searchview.getQuery())) {
-//                            searchListView.setVisibility(View.VISIBLE);
-                            if (!popupWindow.isShowing()) {
-                                popupWindow.showAsDropDown(searchview);
-                                searchview.setFocusableInTouchMode(true);
-                                searchview.setFocusable(true);
-                                searchview.requestFocus();
-//                                popupWindow.setFocusable(true);
-                            }
+                            SearchAndExploreFragment.showSearchListView();
 
                         }
                     }
@@ -218,8 +210,7 @@ public class MainActivity extends FragmentActivity {
             searchview.setOnCloseListener(new SearchView.OnCloseListener() {
                 @Override
                 public boolean onClose() {
-//                    searchListView.setVisibility(View.GONE);
-                    popupWindow.dismiss();
+                    SearchAndExploreFragment.hideSearchListView();
                     return false;
                 }
             });
@@ -227,10 +218,7 @@ public class MainActivity extends FragmentActivity {
                 @Override
                 public void onClick(View v) {
                     searchview.setQuery("", false);
-                    popupWindow.showAsDropDown(searchview);
-                    searchview.setFocusableInTouchMode(true);
-                    searchview.setFocusable(true);
-                    searchview.requestFocus();
+                    SearchAndExploreFragment.showSearchListView();
                 }
             });
             searchview.setQueryHint(Html.fromHtml("<font color = #ffffff>" + "请输入搜索关键词" + "</font>"));
@@ -356,57 +344,4 @@ public class MainActivity extends FragmentActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    private void initPopupWindow() {
-        final ListView searchListView = (ListView)LayoutInflater.from(this).inflate(R.layout.search_suggest_list_view,null);
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("按距离搜索（从近到远）");
-        list.add("按人气搜索（从高到低）");
-        list.add("按作品数搜索（从高到低）");
-        list.add("按评价搜索（从高到低）");
-        list.add("按优惠活动搜索（从近到远）");
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,R.layout.search_list_item,R.id.search_text,list);
-        searchListView.setAdapter(arrayAdapter);
-        searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-        });
-
-        popupWindow = new PopupWindow(searchListView, ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
-        popupWindow.update();
-        popupWindow.setTouchable(true);
-        popupWindow.setFocusable(true);
-//        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-//
-//                    return false;
-//                } else {
-////
-//                    return true;
-//                }
-////                return true;
-//            }
-//        });
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-//        if (popupWindow.isShowing()) {
-//            popupWindow.setFocusable(false);
-//        }
-        return super.onTouchEvent(event);
-    }
 }

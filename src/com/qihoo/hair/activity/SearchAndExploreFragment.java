@@ -1,6 +1,7 @@
 package com.qihoo.hair.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -9,8 +10,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.qihoo.haierdemo.R;
+
+import java.util.ArrayList;
+
 /**
  * 探索发现.
  */
@@ -23,6 +32,7 @@ public class SearchAndExploreFragment extends Fragment implements View.OnTouchLi
     private View rootView;
     private View relative1;
     private View relative2;
+    private static ListView searchListView;
 
     public SearchAndExploreFragment(){}
 
@@ -32,6 +42,9 @@ public class SearchAndExploreFragment extends Fragment implements View.OnTouchLi
 
         rootView = inflater.inflate(R.layout.fragment_search_explore, container, false);
         relative1 = rootView.findViewById(R.id.relative1);
+        searchListView = (ListView)rootView.findViewById(R.id.lv);
+        initSearchList();
+
         View marker1 = (relative1.findViewById(R.id.marker11));
         marker1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +52,6 @@ public class SearchAndExploreFragment extends Fragment implements View.OnTouchLi
                 Dialog dialog = new Dialog(getActivity(),R.style.customDialog);
                 dialog.setContentView(R.layout.map_item);
                 Window dialogWindow = dialog.getWindow();
-//                dialogWindow.setBackgroundDrawable(getResources().getDrawable(R.color.offwhite));
                 dialogWindow.setGravity(Gravity.BOTTOM);
                 dialog.show();
             }
@@ -47,6 +59,7 @@ public class SearchAndExploreFragment extends Fragment implements View.OnTouchLi
 
         relative2 = rootView.findViewById(R.id.relative2);
         relative2.setVisibility(View.INVISIBLE);
+        searchListView.setVisibility(View.INVISIBLE);
 
         rootView.setOnTouchListener(this);
         return rootView;
@@ -86,5 +99,44 @@ public class SearchAndExploreFragment extends Fragment implements View.OnTouchLi
                 break;
         }
         return true;
+    }
+
+    /**
+     * 隐藏搜索提示.
+     */
+    public static void hideSearchListView() {
+        searchListView.setVisibility(View.GONE);
+    }
+
+    /**
+     * 展示搜索提示.
+     */
+    public static void showSearchListView() {
+        searchListView.setVisibility(View.VISIBLE);
+    }
+
+    private void initSearchList() {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("按距离搜索（从近到远）");
+        list.add("按人气搜索（从高到低）");
+        list.add("按作品数搜索（从高到低）");
+        list.add("按评价搜索（从高到低）");
+        list.add("按优惠活动搜索（从近到远）");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(),R.layout.search_list_item,R.id.search_text,list);
+        searchListView.setAdapter(arrayAdapter);
+        searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(getActivity(), SearchResultActivity.class));
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        });
+
     }
 }
